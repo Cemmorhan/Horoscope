@@ -10,11 +10,14 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.horoscope.Horoscope
 import com.example.horoscope.R
 
-class HoroscopeAdapter(val items: List<Horoscope>) : Adapter<HoroscopeViewHolder>() {
+class HoroscopeAdapter(val items: List<Horoscope>, val onClick: (Int)-> Unit) : Adapter<HoroscopeViewHolder>() {
 
     override fun onBindViewHolder(holder: HoroscopeViewHolder, position: Int) {
         val horoscope = items[position]
         holder.render(horoscope)
+        holder.itemView.setOnClickListener{
+            onClick(position)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HoroscopeViewHolder {
