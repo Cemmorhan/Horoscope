@@ -2,9 +2,11 @@ package com.example.horoscope
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
+import android.view.Menu
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         val adapter = HoroscopeAdapter(Horoscope.horoscopeList) { position->
             val horoscope= Horoscope.horoscopeList[position]
             //Toast.makeText(this, horoscope.name, Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, detailActivity::class.java)
+            val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra("HOROSCOPE_ID", horoscope.id)
             startActivity(intent)
         }
@@ -37,6 +39,28 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_activity_main, menu)
+
+        val menuItem = menu?.findItem(R.id.action_search)
+        val searchView= menuItem?.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                Log.i("SEARCH", "he pulsado enter")
+                return true
+            }
+
+            override fun onQueryTextChange(s: String): Boolean {
+                Log.i("SEARCH",s)
+                return false
+            }
+        })
+
+
+        return true
     }
 }
 

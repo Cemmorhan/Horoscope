@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Horoscope"
         tools:targetApi="31">
         <activity
-            android:name=".detailActivity"
+            android:name=".DetailActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

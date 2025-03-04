@@ -2,15 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_favorite"
+        android:id="@+id/action_day"
         android:title="Day"
         app:showAsAction="ifRoom"/>
     <item
+        android:id="@+id/action_month"
         android:tooltipText="Mes"
         android:title="Month"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/action_share"
+        android:id="@+id/action_year"
         android:title="Year"
         app:showAsAction="ifRoom"/>
 </menu>
