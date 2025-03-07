@@ -16,6 +16,10 @@ import com.example.zodiac.HoroscopeAdapter
 class MainActivity : AppCompatActivity() {
 
     lateinit var recyclerView: RecyclerView
+    lateinit var adapter: HoroscopeAdapter
+
+    var horoscopeList = Horoscope.horoscopeList
+    var selectedPosition= -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,19 +30,24 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        recyclerView= findViewById(R.id.recyclerView)
+        recyclerView = findViewById(R.id.recyclerView)
+    }
+    override fun onResume() {
+        super.onResume()
 
-        val adapter = HoroscopeAdapter(Horoscope.horoscopeList) { position->
-            val horoscope= Horoscope.horoscopeList[position]
+        adapter = HoroscopeAdapter(horoscopeList) { position ->
+            val horoscope = horoscopeList[position]
+
             //Toast.makeText(this, horoscope.name, Toast.LENGTH_SHORT).show()
             val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra("HOROSCOPE_ID", horoscope.id)
+            intent.putExtra(DetailActivity.HOROSCOPE_ID, horoscope.id)
             startActivity(intent)
+
+            selectedPosition = position
         }
-        
+
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -53,8 +62,11 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
 
-            override fun onQueryTextChange(s: String): Boolean {
-                Log.i("SEARCH",s)
+            override fun onQueryTextChange(query: String): Boolean {
+                horoscopeList = Horoscope.horoscopeList.filter {
+                    getString(it.name).contains(query,true)
+                }
+                adapter.updateItems(horoscopeList)
                 return false
             }
         })
