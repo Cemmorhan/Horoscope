@@ -5,4 +5,8 @@
 
 
     <color name="favorite">#E91E63</color>
+
+    <color name="menu_color">#090809</color>
+    <color name="horoscope_color">#090809</color>
+
 </resources>

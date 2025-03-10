@@ -47,6 +47,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         recyclerView.adapter = adapter
+        /*
+        layout manager puede ser 4 tipos.
+        linear vertical,
+        linear horizontal,
+        grid y decir numero de columnas GrisLayoutManager(this, 2)
+        y el rarito que no se que hace
+        */
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
@@ -65,7 +72,7 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextChange(query: String): Boolean {
                 horoscopeList = Horoscope.horoscopeList.filter {
                     getString(it.name).contains(query,true)
-                }
+                   }
                 adapter.updateItems(horoscopeList)
                 return false
             }

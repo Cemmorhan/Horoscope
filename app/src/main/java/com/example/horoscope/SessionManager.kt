@@ -1,6 +1,5 @@
 package com.example.zodiac
 
-import android.R
 import android.content.Context
 
 
@@ -8,17 +7,13 @@ class SessionManager(context: Context) {
 
     private val sharedPref = context.getSharedPreferences("zodiac_session", Context.MODE_PRIVATE)
 
-    fun setFavorite(id: String) {
+    fun setFavorite(id: String, favorite: Boolean) {
         val editor = sharedPref.edit()
-        editor.putString("FAVORITE_HOROSCOPE", id)
+        editor.putBoolean("${id}_favorite", favorite)
         editor.apply()
     }
 
-    fun getFavorite(): String {
-        return sharedPref.getString("FAVORITE_HOROSCOPE", "")!!
-    }
-
     fun isFavorite(id: String): Boolean {
-        return id == getFavorite()
+        return sharedPref.getBoolean("${id}_favorite",false)
     }
 }

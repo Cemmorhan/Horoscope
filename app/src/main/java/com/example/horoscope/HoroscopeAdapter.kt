@@ -54,4 +54,4 @@ class HoroscopeViewHolder(view: View) : ViewHolder(view) {
             favoriteImageView.visibility = View.GONE
         }
     }
-}
+    }
