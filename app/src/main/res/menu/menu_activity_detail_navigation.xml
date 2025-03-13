@@ -2,16 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_day"
-        android:title="Day"
+        android:id="@+id/action_daily"
+        android:icon="@android:drawable/ic_menu_today"
+        android:title="Diario"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/action_month"
-        android:tooltipText="Mes"
-        android:title="Month"
+        android:id="@+id/action_weekly"
+        android:icon="@android:drawable/ic_menu_week"
+        android:title="Semanal"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/action_year"
-        android:title="Year"
+        android:id="@+id/action_monthly"
+        android:icon="@android:drawable/ic_menu_month"
+        android:title="Mensual"
         app:showAsAction="ifRoom"/>
 </menu>
